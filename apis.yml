@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Search
-  - Open Source
-  - Full-Text Search
   - AI Search
+  - Full-Text Search
   - Hybrid Search
+  - Open Source
+  - Search
 url: >-
   https://raw.githubusercontent.com/api-evangelist/meilisearch/refs/heads/main/apis.yml
 created: '2025-02-08'
@@ -28,9 +28,9 @@ apis:
     humanURL: https://www.meilisearch.com/docs
     baseURL: https://localhost:7700
     tags:
-      - Search
-      - Indexing
       - Documents
+      - Indexing
+      - Search
     properties:
       - type: Documentation
         url: https://www.meilisearch.com/docs
