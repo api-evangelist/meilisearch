@@ -1,0 +1,31 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Meilisearch
+providerId: meilisearch
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Search
+description: Meilisearch Cloud throughput depends on plan and resource size.
+sources:
+  - https://www.meilisearch.com/pricing
+  - https://www.meilisearch.com/docs/learn/security/master_api_keys
+headers: {}
+responseCodes:
+  throttled: 429
+limits:
+  - name: Search API
+    scope: project
+    metric: queries_per_second
+    limit: scales with resource
+  - name: Indexing API
+    scope: project
+    metric: documents_per_request
+    limit: varies by request size
+  - name: Concurrent indexing tasks
+    scope: project
+    metric: concurrent
+    limit: 4

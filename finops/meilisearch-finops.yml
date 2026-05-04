@@ -1,0 +1,55 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Meilisearch
+providerId: meilisearch
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Search
+description: FOCUS-aligned FinOps for Meilisearch.
+sources:
+  - https://www.meilisearch.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Meilisearch
+serviceCategory: Search
+billingModel:
+  pricingCategory: Subscription with Usage or Resource Pricing
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Meilisearch
+  ServiceCategory: Search
+  ProviderName: Meilisearch
+  PublisherName: Meilisearch
+  BillingCurrency: USD
+meters:
+  - name: search_queries
+    unit: query
+    aggregation: sum
+  - name: stored_documents
+    unit: document-month
+    aggregation: max
+  - name: compute_resources
+    unit: resource-hour
+    aggregation: sum
+  - name: storage
+    unit: GB-month
+    aggregation: max
+principles:
+  - name: Visibility
+    description: Track Meilisearch consumption monthly.
+  - name: Allocation
+    description: Tag usage to teams/cost centers.
+  - name: Optimization
+    description: Right-size; reclaim unused entitlements.
+  - name: Accountability
+    description: Set spend alerts; quarterly review.

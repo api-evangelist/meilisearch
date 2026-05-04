@@ -1,0 +1,94 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Meilisearch
+providerId: meilisearch
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Search
+description: 'Meilisearch Cloud: usage-based ($30/mo+), resource-based ($23/mo+), or self-hosted open
+  source.'
+sources:
+  - https://www.meilisearch.com/pricing
+plans:
+  - id: meilisearch-oss
+    name: Open Source
+    type: freemium
+    description: Free; self-host.
+    entries:
+      - label: Per deployment
+        name: deploy
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Open source
+      - name: Self-hosted
+      - name: Seamless migration to Cloud
+  - id: meilisearch-usage
+    name: Cloud Usage-Based
+    type: paid
+    description: Starting at $30/month. Pay per search and stored documents.
+    entries:
+      - label: Monthly minimum
+        name: monthly_min
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '30.00'
+        userMultiplied: false
+    elements:
+      - name: 14-day free trial
+      - name: Fully managed Cloud
+      - name: Pre-set search/document limits
+      - name: Upgrade anytime
+  - id: meilisearch-resource
+    name: Cloud Resource-Based
+    type: paid
+    description: Starting at $23/month. Pay by CPU, RAM, storage.
+    entries:
+      - label: Monthly minimum
+        name: monthly_min
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '23.00'
+        userMultiplied: false
+    elements:
+      - name: Real-time infra metrics
+      - name: Upgrade anytime, zero downtime
+      - name: Best for high-traffic / vector workloads
+  - id: meilisearch-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom quote.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Enterprise features
+      - name: Self-hosting option
+      - name: Premier support
+      - name: Premium SLA
+      - name: Enterprise compliance
