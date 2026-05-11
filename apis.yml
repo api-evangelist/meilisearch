@@ -78,6 +78,12 @@ common:
     sources:
       - https://www.meilisearch.com/pricing
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://www.meilisearch.com/integrations
+integrations:
+  - name: 'Meilisearch''s'
+  - name: Background gradient and figure
+  - name: line
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
