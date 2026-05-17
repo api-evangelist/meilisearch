@@ -32,7 +32,7 @@ apis:
         url: https://www.meilisearch.com/docs
       - type: Reference
         url: https://www.meilisearch.com/docs/reference/api/overview
-      - type: Getting Started
+      - type: GettingStarted
         url: https://www.meilisearch.com/docs/learn/getting_started/installation
       - type: Authentication
         url: https://www.meilisearch.com/docs/learn/security/basic_security
@@ -43,11 +43,11 @@ common:
     url: https://www.meilisearch.com/
   - type: Documentation
     url: https://www.meilisearch.com/docs
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/meilisearch
   - type: Community
     url: https://discord.gg/meilisearch
-  - type: Sign Up
+  - type: SignUp
     url: https://cloud.meilisearch.com/register
   - type: Login
     url: https://cloud.meilisearch.com/
@@ -55,7 +55,7 @@ common:
     url: https://www.meilisearch.com/pricing
   - type: Blog
     url: https://www.meilisearch.com/blog
-  - type: Change Log
+  - type: ChangeLog
     url: https://github.com/meilisearch/meilisearch/releases
   - type: Features
     data:
