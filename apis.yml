@@ -1,8 +1,6 @@
 aid: meilisearch
 name: Meilisearch
-description: Meilisearch is an open source, lightning-fast search engine API that brings AI-powered hybrid
-  search to sites and applications. It provides a RESTful API for indexing, searching, and managing documents,
-  with SDKs available for all major languages and frameworks.
+description: Meilisearch is an open source, lightning-fast search engine API that brings AI-powered hybrid search to sites and applications. It provides a RESTful API for indexing, searching, and managing documents, with SDKs available for all major languages and frameworks.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -13,14 +11,12 @@ tags:
   - Search
 url: https://raw.githubusercontent.com/api-evangelist/meilisearch/refs/heads/main/apis.yml
 created: '2025-02-08'
-modified: '2026-05-04'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: meilisearch:meilisearch-api
     name: Meilisearch API
-    description: The Meilisearch RESTful API provides endpoints for creating and managing indexes, adding
-      and searching documents, configuring search settings, managing API keys, and monitoring tasks and
-      health status.
+    description: The Meilisearch RESTful API provides endpoints for creating and managing indexes, adding and searching documents, configuring search settings, managing API keys, and monitoring tasks and health status.
     humanURL: https://www.meilisearch.com/docs
     baseURL: https://localhost:7700
     tags:
@@ -80,6 +76,9 @@ common:
     updated: '2026-05-04'
   - type: Integrations
     url: https://www.meilisearch.com/integrations
+  - name: MCP Server
+    url: https://github.com/meilisearch/meilisearch-mcp
+    type: MCPServer
 integrations:
   - name: 'Meilisearch''s'
   - name: Background gradient and figure
