@@ -3,12 +3,11 @@
   "feeds": [
     {
       "source": "https://www.meilisearch.com/blog",
-      "feed_url": "",
-      "title": "",
-      "saved": 0,
-      "error": "no_feed"
+      "feed_url": "https://www.meilisearch.com/feed.xml",
+      "title": "Meilisearch Blog",
+      "saved": 50
     }
   ],
-  "fetched": "2026-05-09T20:17:51Z",
-  "post_count": 0
+  "fetched": "2026-05-17T20:48:52Z",
+  "post_count": 50
 }
