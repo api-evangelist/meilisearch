@@ -2,12 +2,20 @@
   "repo": "meilisearch",
   "feeds": [
     {
-      "source": "https://www.meilisearch.com/blog",
+      "source": "https://www.meilisearch.com/feed.xml",
       "feed_url": "https://www.meilisearch.com/feed.xml",
-      "title": "Meilisearch Blog",
-      "saved": 50
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.meilisearch.com/pricing",
+      "feed_url": "https://www.meilisearch.com/pricing",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
-  "post_count": 50
+  "fetched": "2026-06-01T23:35:02Z",
+  "post_count": 52
 }
