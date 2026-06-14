@@ -1,0 +1,924 @@
+"""
+Meilisearch GraphQL Schema
+Conceptual GraphQL representation of the Meilisearch REST API.
+Source: https://www.meilisearch.com/docs/reference/api
+"""
+
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# ─────────────────────────────────────────
+# Index types
+# ─────────────────────────────────────────
+
+"""A search index that holds a collection of documents."""
+type Index {
+  uid: String!
+  primaryKey: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  details: IndexDetails
+  settings: IndexSettings
+  stats: IndexStats
+  status: IndexStatus
+}
+
+"""Extended metadata for an index."""
+type IndexDetails {
+  uid: String!
+  primaryKey: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  numberOfDocuments: Int!
+  isIndexing: Boolean!
+  fieldDistribution: JSON
+}
+
+"""All configurable settings for an index."""
+type IndexSettings {
+  searchableAttributes: [String!]
+  displayedAttributes: [String!]
+  filterableAttributes: [String!]
+  sortableAttributes: [String!]
+  rankingRules: [String!]
+  stopWords: [String!]
+  synonyms: JSON
+  distinctAttribute: String
+  typoTolerance: TypoTolerance
+  faceting: Faceting
+  pagination: Pagination
+  proximityPrecision: String
+  searchCutoffMs: Int
+  embedders: JSON
+  separatorTokens: [String!]
+  nonSeparatorTokens: [String!]
+  dictionary: [String!]
+}
+
+"""Runtime statistics for an index."""
+type IndexStats {
+  numberOfDocuments: Int!
+  isIndexing: Boolean!
+  fieldDistribution: JSON
+}
+
+"""Processing status of an index."""
+enum IndexStatus {
+  available
+  unavailable
+  loading
+}
+
+# ─────────────────────────────────────────
+# Field types
+# ─────────────────────────────────────────
+
+"""A field descriptor within an index."""
+type Field {
+  name: String!
+  type: String
+  filterable: Boolean!
+  sortable: Boolean!
+  searchable: Boolean!
+  displayed: Boolean!
+}
+
+"""Attributes that can be used in filters and facets."""
+type FilterableAttributes {
+  attributes: [String!]!
+}
+
+"""Attributes that support sort operations."""
+type SortableAttributes {
+  attributes: [String!]!
+}
+
+"""Attributes included in full-text search."""
+type SearchableAttributes {
+  attributes: [String!]!
+}
+
+"""Attributes returned in search results."""
+type DisplayedAttributes {
+  attributes: [String!]!
+}
+
+"""Words ignored during indexing and search."""
+type StopWords {
+  words: [String!]!
+}
+
+"""A pair of synonymous terms."""
+type SynonymEntry {
+  word: String!
+  synonyms: [String!]!
+}
+
+"""All synonym mappings for an index."""
+type Synonyms {
+  entries: [SynonymEntry!]!
+}
+
+# ─────────────────────────────────────────
+# Typo tolerance & search config
+# ─────────────────────────────────────────
+
+"""Configuration for typo tolerance in searches."""
+type TypoTolerance {
+  enabled: Boolean!
+  minWordSizeForTypos: MinWordSizeForTypos
+  disableOnWords: [String!]
+  disableOnAttributes: [String!]
+}
+
+"""Minimum word lengths before typo tolerance activates."""
+type MinWordSizeForTypos {
+  oneTypo: Int!
+  twoTypos: Int!
+}
+
+"""Faceting settings controlling the number of facet values."""
+type Faceting {
+  maxValuesPerFacet: Int!
+  sortFacetValuesBy: JSON
+}
+
+"""Pagination constraints for search results."""
+type Pagination {
+  maxTotalHits: Int!
+}
+
+"""Proximity precision mode for ranking."""
+type Proximity {
+  precision: String!
+}
+
+# ─────────────────────────────────────────
+# Document types
+# ─────────────────────────────────────────
+
+"""A single document stored in an index."""
+type Document {
+  id: String!
+  data: JSON!
+}
+
+"""Document with metadata for detailed views."""
+type DocumentDetails {
+  id: String!
+  indexUid: String!
+  data: JSON!
+}
+
+# ─────────────────────────────────────────
+# Search result types
+# ─────────────────────────────────────────
+
+"""Paginated list of search results."""
+type SearchResult {
+  hits: [Hit!]!
+  query: String!
+  processingTimeMs: Int!
+  limit: Int
+  offset: Int
+  estimatedTotalHits: Int
+  totalHits: TotalHits
+  totalPages: Int
+  hitsPerPage: Int
+  page: Int
+  facetDistribution: FacetDistribution
+  facetStats: JSON
+  semanticHitCount: Int
+}
+
+"""A single matched document in a search result."""
+type Hit {
+  id: String!
+  data: JSON!
+  formatted: JSON
+  matchesPosition: JSON
+  rankingScore: Float
+  rankingScoreDetails: JSON
+  semanticScore: Float
+}
+
+"""All hits returned by a search."""
+type SearchHits {
+  hits: [Hit!]!
+  totalCount: Int!
+}
+
+"""Distribution of values across facets."""
+type FacetDistribution {
+  facets: JSON!
+}
+
+"""Details for a single facet field."""
+type FacetDetails {
+  name: String!
+  values: [FacetValue!]!
+}
+
+"""A single value within a facet with its document count."""
+type FacetValue {
+  value: String!
+  count: Int!
+}
+
+"""Total number of hits for a query, exact or estimated."""
+type TotalHits {
+  value: Int!
+  isEstimate: Boolean!
+}
+
+"""Processing time in milliseconds for a search request."""
+type ProcessingTimeMs {
+  value: Int!
+}
+
+# ─────────────────────────────────────────
+# Search query input types
+# ─────────────────────────────────────────
+
+"""Input parameters for a search query."""
+input SearchQuery {
+  q: String
+  offset: Int
+  limit: Int
+  hitsPerPage: Int
+  page: Int
+  filter: SearchFilter
+  facets: [String!]
+  attributesToRetrieve: [String!]
+  attributesToCrop: [String!]
+  cropLength: Int
+  cropMarker: String
+  attributesToHighlight: [String!]
+  highlightPreTag: String
+  highlightPostTag: String
+  showMatchesPosition: Boolean
+  sort: [SearchSort!]
+  matchingStrategy: String
+  showRankingScore: Boolean
+  showRankingScoreDetails: Boolean
+  rankingScoreThreshold: Float
+  vector: [Float!]
+  hybrid: HybridSearchInput
+  distinct: String
+  retrieveVectors: Boolean
+  locales: [String!]
+  indexUid: String
+}
+
+"""A filter expression for narrowing search results."""
+input SearchFilter {
+  expression: String
+}
+
+"""Facets to compute during a search."""
+input SearchFacets {
+  facets: [String!]!
+}
+
+"""Sort directive for search results."""
+input SearchSort {
+  attribute: String!
+  order: SortOrder!
+}
+
+"""Sort direction."""
+enum SortOrder {
+  asc
+  desc
+}
+
+"""Hybrid (vector + keyword) search parameters."""
+input HybridSearchInput {
+  semanticRatio: Float!
+  embedder: String
+}
+
+# ─────────────────────────────────────────
+# Highlighting & cropping
+# ─────────────────────────────────────────
+
+"""Highlighted snippet of a matched attribute."""
+type Highlight {
+  attribute: String!
+  value: String!
+  preTag: String!
+  postTag: String!
+}
+
+"""Cropped position for a matched attribute."""
+type CropPosition {
+  attribute: String!
+  start: Int!
+  length: Int!
+}
+
+# ─────────────────────────────────────────
+# Vector / embedder types
+# ─────────────────────────────────────────
+
+"""Configuration for an embedder used in vector search."""
+type EmbedderConfig {
+  name: String!
+  source: String!
+  model: String
+  apiKey: String
+  documentTemplate: String
+  dimensions: Int
+  distribution: JSON
+  url: String
+  request: JSON
+  response: JSON
+  headers: JSON
+}
+
+"""A vector search result with semantic similarity score."""
+type VectorSearch {
+  hits: [Hit!]!
+  semanticHitCount: Int!
+  processingTimeMs: Int!
+  query: String
+  vector: [Float!]
+}
+
+# ─────────────────────────────────────────
+# Task types
+# ─────────────────────────────────────────
+
+"""An asynchronous task tracked by Meilisearch."""
+type Task {
+  uid: Int!
+  indexUid: String
+  status: TaskStatus!
+  type: TaskType!
+  details: TaskDetails
+  error: TaskError
+  duration: String
+  enqueuedAt: DateTime!
+  startedAt: DateTime
+  finishedAt: DateTime
+  batchUid: Int
+  canceledBy: Int
+}
+
+"""Details payload specific to a task type."""
+type TaskDetails {
+  receivedDocuments: Int
+  indexedDocuments: Int
+  deletedDocuments: Int
+  editedDocuments: Int
+  primaryKey: String
+  providedIds: Int
+  deletedTasks: Int
+  canceledTasks: Int
+  matchedTasks: Int
+  dumpUid: String
+  swapIndexes: JSON
+  rankingRules: [String!]
+  searchableAttributes: [String!]
+  displayedAttributes: [String!]
+  stopWords: [String!]
+  synonyms: JSON
+  filterableAttributes: [String!]
+  sortableAttributes: [String!]
+  distinctAttribute: String
+  typoTolerance: JSON
+  faceting: JSON
+  pagination: JSON
+  embedders: JSON
+}
+
+"""Category of an asynchronous task."""
+enum TaskType {
+  indexCreation
+  indexUpdate
+  indexDeletion
+  indexSwap
+  documentAdditionOrUpdate
+  documentEdition
+  documentDeletion
+  settingsUpdate
+  dumpCreation
+  taskCancelation
+  taskDeletion
+  snapshotCreation
+}
+
+"""Lifecycle status of an asynchronous task."""
+enum TaskStatus {
+  enqueued
+  processing
+  succeeded
+  failed
+  canceled
+}
+
+"""Error information attached to a failed task."""
+type TaskError {
+  message: String!
+  code: ErrorCode!
+  type: String!
+  link: String!
+}
+
+"""Paginated list of tasks."""
+type TaskQueue {
+  results: [Task!]!
+  total: Int!
+  limit: Int!
+  from: Int
+  next: Int
+}
+
+"""Result of a task cancellation request."""
+type TaskCancellation {
+  taskUid: Int!
+  indexUid: String
+  status: TaskStatus!
+  type: TaskType!
+  enqueuedAt: DateTime!
+}
+
+# ─────────────────────────────────────────
+# Key / auth types
+# ─────────────────────────────────────────
+
+"""An API key with scoped permissions."""
+type Key {
+  uid: String!
+  key: String!
+  name: String
+  description: String
+  actions: [KeyAction!]!
+  indexes: [KeyIndex!]!
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Detailed view of an API key."""
+type KeyDetails {
+  uid: String!
+  key: String!
+  name: String
+  description: String
+  actions: [KeyAction!]!
+  indexes: [KeyIndex!]!
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Action permissions available to an API key."""
+enum KeyAction {
+  search
+  documents_add
+  documents_get
+  documents_delete
+  indexes_create
+  indexes_get
+  indexes_update
+  indexes_delete
+  indexes_swap
+  tasks_get
+  tasks_cancel
+  tasks_delete
+  settings_get
+  settings_update
+  stats_get
+  metrics_get
+  dumps_create
+  snapshots_create
+  version
+  keys_create
+  keys_get
+  keys_update
+  keys_delete
+  all
+  experimental_features_get
+  experimental_features_update
+}
+
+"""Index scope for an API key ('*' means all indexes)."""
+type KeyIndex {
+  pattern: String!
+}
+
+# ─────────────────────────────────────────
+# Batch types
+# ─────────────────────────────────────────
+
+"""A batch of tasks processed together."""
+type Batch {
+  uid: Int!
+  details: BatchDetails
+  stats: BatchStats
+  startedAt: DateTime!
+  finishedAt: DateTime
+  duration: String
+}
+
+"""Task summary counters for a batch."""
+type BatchDetails {
+  totalNbTasks: Int!
+  status: BatchStatus!
+  types: JSON
+  indexUids: JSON
+}
+
+"""Counts of tasks in each status within a batch."""
+type BatchStats {
+  totalNbTasks: Int!
+  succeeded: Int!
+  failed: Int!
+  canceled: Int!
+  enqueued: Int!
+  processing: Int!
+}
+
+"""Lifecycle status of a batch."""
+enum BatchStatus {
+  succeeded
+  failed
+  canceled
+  processing
+}
+
+# ─────────────────────────────────────────
+# Settings & update types
+# ─────────────────────────────────────────
+
+"""Global settings wrapper (alias for IndexSettings)."""
+type Settings {
+  searchableAttributes: [String!]
+  displayedAttributes: [String!]
+  filterableAttributes: [String!]
+  sortableAttributes: [String!]
+  rankingRules: [String!]
+  stopWords: [String!]
+  synonyms: JSON
+  distinctAttribute: String
+  typoTolerance: TypoTolerance
+  faceting: Faceting
+  pagination: Pagination
+  searchCutoffMs: Int
+  embedders: JSON
+}
+
+"""Settings update result with task reference."""
+type SettingsDetails {
+  taskUid: Int!
+  indexUid: String!
+  status: TaskStatus!
+  type: TaskType!
+  enqueuedAt: DateTime!
+}
+
+"""Status of a settings or document update operation."""
+type UpdateStatus {
+  taskUid: Int!
+  indexUid: String
+  status: TaskStatus!
+  type: TaskType!
+  enqueuedAt: DateTime!
+}
+
+# ─────────────────────────────────────────
+# Stats & diagnostics
+# ─────────────────────────────────────────
+
+"""Instance-wide statistics."""
+type Stats {
+  databaseSize: Int!
+  usedDatabaseSize: Int!
+  lastUpdate: DateTime
+  indexes: JSON!
+}
+
+"""Database size information."""
+type DatabaseSize {
+  databaseSize: Int!
+  usedDatabaseSize: Int!
+}
+
+"""Health status of the Meilisearch instance."""
+type Health {
+  status: String!
+}
+
+"""Version information for the Meilisearch instance."""
+type Version {
+  commitSha: String!
+  commitDate: String!
+  pkg: String!
+}
+
+# ─────────────────────────────────────────
+# Error types
+# ─────────────────────────────────────────
+
+"""Well-known Meilisearch error codes."""
+enum ErrorCode {
+  index_creation_failed
+  index_already_exists
+  index_not_found
+  invalid_index_uid
+  index_not_accessible
+  invalid_index_primary_key
+  index_primary_key_already_exists
+  index_primary_key_multiple_candidates_from_documents
+  invalid_ranking_rule
+  invalid_request
+  invalid_filter
+  invalid_sort
+  bad_request
+  document_not_found
+  internal
+  invalid_api_key
+  missing_api_key_error
+  api_key_not_found
+  missing_authorization_header
+  unretrievable_document
+  search_error
+  invalid_content_type
+  missing_content_type
+  payload_too_large
+  task_not_found
+  batch_not_found
+  no_space_left_on_device
+  dump_process_failed
+  database_size_limit_reached
+  vector_embedding_error
+  not_found
+}
+
+"""A structured API error response."""
+type Error {
+  message: String!
+  code: ErrorCode!
+  type: String!
+  link: String!
+}
+
+# ─────────────────────────────────────────
+# Federated search types
+# ─────────────────────────────────────────
+
+"""Input for a federated multi-index search."""
+input FederatedSearchQuery {
+  queries: [SearchQuery!]!
+  federation: FederationOptions
+}
+
+"""Options for federated search merging."""
+input FederationOptions {
+  limit: Int
+  offset: Int
+  facetsByIndex: JSON
+  mergeFacets: MergeFacetsInput
+}
+
+"""Options for merging facets in federated search."""
+input MergeFacetsInput {
+  maxValuesPerFacet: Int
+}
+
+"""Result of a federated multi-index search."""
+type FederatedSearchResult {
+  hits: [FederatedHit!]!
+  processingTimeMs: Int!
+  limit: Int!
+  offset: Int!
+  estimatedTotalHits: Int
+  facetsByIndex: JSON
+  facetDistribution: JSON
+  facetStats: JSON
+}
+
+"""A hit returned by a federated search including its source index."""
+type FederatedHit {
+  id: String!
+  data: JSON!
+  indexUid: String!
+  rankingScore: Float
+  formatted: JSON
+}
+
+# ─────────────────────────────────────────
+# Experimental features
+# ─────────────────────────────────────────
+
+"""Experimental feature flags for the Meilisearch instance."""
+type ExperimentalFeatures {
+  scoreDetails: Boolean!
+  vectorStore: Boolean!
+  editDocumentsByFunction: Boolean!
+  containsFilter: Boolean!
+  network: Boolean!
+  logsDrain: Boolean!
+  metrics: Boolean!
+  exportPuffin: Boolean!
+}
+
+# ─────────────────────────────────────────
+# Queries
+# ─────────────────────────────────────────
+
+type Query {
+  """List all indexes."""
+  indexes(limit: Int, offset: Int): [Index!]!
+
+  """Get a single index by uid."""
+  index(uid: String!): Index
+
+  """Get settings for an index."""
+  indexSettings(indexUid: String!): Settings
+
+  """Get stats for a specific index."""
+  indexStats(indexUid: String!): IndexStats
+
+  """Get all documents in an index."""
+  documents(indexUid: String!, limit: Int, offset: Int, fields: [String!], filter: String): [Document!]!
+
+  """Get a single document by id."""
+  document(indexUid: String!, documentId: String!): Document
+
+  """Perform a search query."""
+  search(indexUid: String!, query: SearchQuery!): SearchResult!
+
+  """Perform a federated search across multiple indexes."""
+  federatedSearch(query: FederatedSearchQuery!): FederatedSearchResult!
+
+  """List all tasks with optional filters."""
+  tasks(limit: Int, from: Int, uids: [Int!], indexUids: [String!], statuses: [TaskStatus!], types: [TaskType!], canceledBy: [Int!], beforeEnqueuedAt: DateTime, afterEnqueuedAt: DateTime, beforeStartedAt: DateTime, afterStartedAt: DateTime, beforeFinishedAt: DateTime, afterFinishedAt: DateTime): TaskQueue!
+
+  """Get a single task by uid."""
+  task(uid: Int!): Task
+
+  """List all batches."""
+  batches(limit: Int, from: Int, uids: [Int!], statuses: [TaskStatus!], types: [TaskType!]): [Batch!]!
+
+  """Get a single batch by uid."""
+  batch(uid: Int!): Batch
+
+  """List all API keys."""
+  keys(limit: Int, offset: Int): [Key!]!
+
+  """Get a single API key by uid or key value."""
+  key(uid: String!): Key
+
+  """Get instance-wide statistics."""
+  stats: Stats!
+
+  """Get instance health."""
+  health: Health!
+
+  """Get Meilisearch version info."""
+  version: Version!
+
+  """Get experimental feature flags."""
+  experimentalFeatures: ExperimentalFeatures!
+}
+
+# ─────────────────────────────────────────
+# Mutations
+# ─────────────────────────────────────────
+
+type Mutation {
+  """Create a new index."""
+  createIndex(uid: String!, primaryKey: String): Task!
+
+  """Update an existing index (e.g., change primary key)."""
+  updateIndex(uid: String!, primaryKey: String!): Task!
+
+  """Delete an index."""
+  deleteIndex(uid: String!): Task!
+
+  """Swap two or more pairs of indexes."""
+  swapIndexes(swaps: [SwapInput!]!): Task!
+
+  """Add or replace documents in an index."""
+  addDocuments(indexUid: String!, documents: [JSON!]!, primaryKey: String): Task!
+
+  """Add or update documents in an index."""
+  updateDocuments(indexUid: String!, documents: [JSON!]!, primaryKey: String): Task!
+
+  """Delete all documents in an index."""
+  deleteAllDocuments(indexUid: String!): Task!
+
+  """Delete documents matching a filter."""
+  deleteDocumentsByFilter(indexUid: String!, filter: String!): Task!
+
+  """Delete specific documents by id."""
+  deleteDocuments(indexUid: String!, documentIds: [String!]!): Task!
+
+  """Edit documents using a function (experimental)."""
+  editDocuments(indexUid: String!, function: String!, filter: String, context: JSON): Task!
+
+  """Update settings for an index."""
+  updateSettings(indexUid: String!, settings: SettingsInput!): Task!
+
+  """Reset all settings to defaults."""
+  resetSettings(indexUid: String!): Task!
+
+  """Cancel tasks matching a filter."""
+  cancelTasks(filter: TaskFilterInput!): Task!
+
+  """Delete tasks matching a filter."""
+  deleteTasks(filter: TaskFilterInput!): Task!
+
+  """Create a new API key."""
+  createKey(name: String, description: String, actions: [KeyAction!]!, indexes: [String!]!, expiresAt: DateTime): Key!
+
+  """Update an existing API key."""
+  updateKey(uid: String!, name: String, description: String): Key!
+
+  """Delete an API key."""
+  deleteKey(uid: String!): Boolean!
+
+  """Trigger a dump of the database."""
+  createDump: Task!
+
+  """Trigger a snapshot."""
+  createSnapshot: Task!
+
+  """Update experimental feature flags."""
+  updateExperimentalFeatures(features: ExperimentalFeaturesInput!): ExperimentalFeatures!
+}
+
+"""Input for swapping index pairs."""
+input SwapInput {
+  indexes: [String!]!
+}
+
+"""Input for updating index settings."""
+input SettingsInput {
+  searchableAttributes: [String!]
+  displayedAttributes: [String!]
+  filterableAttributes: [String!]
+  sortableAttributes: [String!]
+  rankingRules: [String!]
+  stopWords: [String!]
+  synonyms: JSON
+  distinctAttribute: String
+  typoTolerance: TypoToleranceInput
+  faceting: FacetingInput
+  pagination: PaginationInput
+  searchCutoffMs: Int
+  embedders: JSON
+  separatorTokens: [String!]
+  nonSeparatorTokens: [String!]
+  dictionary: [String!]
+}
+
+"""Input for typo tolerance settings."""
+input TypoToleranceInput {
+  enabled: Boolean
+  minWordSizeForTypos: MinWordSizeForTyposInput
+  disableOnWords: [String!]
+  disableOnAttributes: [String!]
+}
+
+"""Input for minimum word size for typos."""
+input MinWordSizeForTyposInput {
+  oneTypo: Int
+  twoTypos: Int
+}
+
+"""Input for faceting settings."""
+input FacetingInput {
+  maxValuesPerFacet: Int
+  sortFacetValuesBy: JSON
+}
+
+"""Input for pagination settings."""
+input PaginationInput {
+  maxTotalHits: Int
+}
+
+"""Filter input for task cancellation or deletion."""
+input TaskFilterInput {
+  uids: [Int!]
+  indexUids: [String!]
+  statuses: [TaskStatus!]
+  types: [TaskType!]
+  beforeEnqueuedAt: DateTime
+  afterEnqueuedAt: DateTime
+}
+
+"""Input for updating experimental features."""
+input ExperimentalFeaturesInput {
+  scoreDetails: Boolean
+  vectorStore: Boolean
+  editDocumentsByFunction: Boolean
+  containsFilter: Boolean
+  network: Boolean
+  logsDrain: Boolean
+  metrics: Boolean
+  exportPuffin: Boolean
+}
