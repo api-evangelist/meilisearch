@@ -1,0 +1,609 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/health"
+          },
+          "docs": "Returns the health status of the Meilisearch instance."
+        },
+        {
+          "info": {
+            "name": "Get version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/version"
+          },
+          "docs": "Returns the version of the running Meilisearch instance."
+        },
+        {
+          "info": {
+            "name": "Get global stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/stats"
+          },
+          "docs": "Returns aggregate statistics across all indexes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes"
+          },
+          "docs": "List indexes"
+        },
+        {
+          "info": {
+            "name": "Create index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes"
+          },
+          "docs": "Create index"
+        },
+        {
+          "info": {
+            "name": "Get index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get index"
+        },
+        {
+          "info": {
+            "name": "Update index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Update index"
+        },
+        {
+          "info": {
+            "name": "Delete index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete index"
+        },
+        {
+          "info": {
+            "name": "Get index stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/stats",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get index stats"
+        },
+        {
+          "info": {
+            "name": "Swap indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/swap-indexes"
+          },
+          "docs": "Swap indexes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "List documents"
+        },
+        {
+          "info": {
+            "name": "Add or replace documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Add or replace documents"
+        },
+        {
+          "info": {
+            "name": "Add or update documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Add or update documents"
+        },
+        {
+          "info": {
+            "name": "Delete all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete all documents"
+        },
+        {
+          "info": {
+            "name": "Get a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/:documentId",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a document"
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/:documentId",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a document"
+        },
+        {
+          "info": {
+            "name": "Delete documents in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/delete-batch",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete documents in batch"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/search",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Search (GET)"
+        },
+        {
+          "info": {
+            "name": "Search (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/search",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Search (POST)"
+        },
+        {
+          "info": {
+            "name": "Multi-search across indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/multi-search"
+          },
+          "docs": "Multi-search across indexes"
+        },
+        {
+          "info": {
+            "name": "Find similar documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/similar",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Find similar documents"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get all settings"
+        },
+        {
+          "info": {
+            "name": "Update all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Update all settings"
+        },
+        {
+          "info": {
+            "name": "Reset all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Reset all settings"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/keys"
+          },
+          "docs": "List API keys"
+        },
+        {
+          "info": {
+            "name": "Create API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/keys"
+          },
+          "docs": "Create API key"
+        },
+        {
+          "info": {
+            "name": "Get an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an API key"
+        },
+        {
+          "info": {
+            "name": "Update an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update an API key"
+        },
+        {
+          "info": {
+            "name": "Delete an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an API key"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/tasks"
+          },
+          "docs": "List tasks"
+        },
+        {
+          "info": {
+            "name": "Get a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/tasks/:taskUid",
+            "params": [
+              {
+                "name": "taskUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a task"
+        },
+        {
+          "info": {
+            "name": "Cancel tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/tasks/cancel"
+          },
+          "docs": "Cancel tasks"
+        },
+        {
+          "info": {
+            "name": "Delete tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/tasks/delete"
+          },
+          "docs": "Delete tasks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
