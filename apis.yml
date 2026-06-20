@@ -5,7 +5,7 @@ description: Meilisearch is an open source, lightning-fast search engine API tha
   API for indexing, searching, and managing documents, with SDKs available for all
   major languages and frameworks.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - AI Search
 - Full-Text Search
