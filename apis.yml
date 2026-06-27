@@ -52,7 +52,7 @@ common:
   url: https://github.com/meilisearch
 - type: Community
   url: https://discord.gg/meilisearch
-- type: SignUp
+- type: Signup
   url: https://cloud.meilisearch.com/register
 - type: Login
   url: https://cloud.meilisearch.com/
