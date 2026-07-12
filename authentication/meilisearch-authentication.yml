@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/meilisearch-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: token
+  description: |-
+    Authorization header using "Authorization: Bearer {API_KEY}".
+    The master key authorizes /keys management; regular API keys
+    should be used for all other routes.
+  sources:
+  - openapi/meilisearch-openapi.yml

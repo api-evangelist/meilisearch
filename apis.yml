@@ -42,6 +42,14 @@ apis:
   - url: graphql/meilisearch-graphql.md
     type: GraphQL
 common:
+- type: TrustCenter
+  url: security/meilisearch-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/meilisearch-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/meilisearch-domain-security.yml
+- type: Authentication
+  url: authentication/meilisearch-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/meilisearch
 - type: Portal
