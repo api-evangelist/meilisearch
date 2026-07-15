@@ -42,6 +42,8 @@ apis:
   - url: graphql/meilisearch-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/meilisearch-agentic-access.yml
 - type: TrustCenter
   url: security/meilisearch-trust-center.yml
 - type: VulnerabilityDisclosure
