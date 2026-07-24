@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch Documents Search API
+  description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
+
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+
+    API keys, and tasks. All protected routes require Bearer token authentication using
+
+    a master key or regular API key.
+
+    '
+  version: '1.0'
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+- url: http://localhost:7700
+  description: Default local Meilisearch instance
+- url: https://{cluster}.meilisearch.io
+  description: Meilisearch Cloud instance
+  variables:
+    cluster:
+      default: edge
+security:
+- bearerAuth: []
+tags:
+- name: Search
+paths:
+  /indexes/{indexUid}/search:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    get:
+      tags:
+      - Search
+      summary: Search (GET)
+      responses:
+        '200':
+          description: Search results
+    post:
+      tags:
+      - Search
+      summary: Search (POST)
+      responses:
+        '200':
+          description: Search results
+  /multi-search:
+    post:
+      tags:
+      - Search
+      summary: Multi-search across indexes
+      responses:
+        '200':
+          description: Aggregated search results
+  /indexes/{indexUid}/similar:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    post:
+      tags:
+      - Search
+      summary: Find similar documents
+      responses:
+        '200':
+          description: Similar documents
+components:
+  parameters:
+    IndexUid:
+      name: indexUid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the index.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: 'Authorization header using "Authorization: Bearer {API_KEY}".
+
+        The master key authorizes /keys management; regular API keys
+
+        should be used for all other routes.
+
+        '

@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch Documents Settings API
+  description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
+
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+
+    API keys, and tasks. All protected routes require Bearer token authentication using
+
+    a master key or regular API key.
+
+    '
+  version: '1.0'
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+- url: http://localhost:7700
+  description: Default local Meilisearch instance
+- url: https://{cluster}.meilisearch.io
+  description: Meilisearch Cloud instance
+  variables:
+    cluster:
+      default: edge
+security:
+- bearerAuth: []
+tags:
+- name: Settings
+paths:
+  /indexes/{indexUid}/settings:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    get:
+      tags:
+      - Settings
+      summary: Get all settings
+      responses:
+        '200':
+          description: Settings payload
+    patch:
+      tags:
+      - Settings
+      summary: Update all settings
+      responses:
+        '202':
+          description: Task enqueued
+    delete:
+      tags:
+      - Settings
+      summary: Reset all settings
+      responses:
+        '202':
+          description: Task enqueued
+components:
+  parameters:
+    IndexUid:
+      name: indexUid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the index.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: 'Authorization header using "Authorization: Bearer {API_KEY}".
+
+        The master key authorizes /keys management; regular API keys
+
+        should be used for all other routes.
+
+        '

@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch Documents API
+  description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
+
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+
+    API keys, and tasks. All protected routes require Bearer token authentication using
+
+    a master key or regular API key.
+
+    '
+  version: '1.0'
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+- url: http://localhost:7700
+  description: Default local Meilisearch instance
+- url: https://{cluster}.meilisearch.io
+  description: Meilisearch Cloud instance
+  variables:
+    cluster:
+      default: edge
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+paths:
+  /indexes/{indexUid}/documents:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    get:
+      tags:
+      - Documents
+      summary: List documents
+      responses:
+        '200':
+          description: Paginated documents
+    post:
+      tags:
+      - Documents
+      summary: Add or replace documents
+      responses:
+        '202':
+          description: Task enqueued
+    put:
+      tags:
+      - Documents
+      summary: Add or update documents
+      responses:
+        '202':
+          description: Task enqueued
+    delete:
+      tags:
+      - Documents
+      summary: Delete all documents
+      responses:
+        '202':
+          description: Task enqueued
+  /indexes/{indexUid}/documents/{documentId}:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    - name: documentId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Documents
+      summary: Get a document
+      responses:
+        '200':
+          description: Document
+    delete:
+      tags:
+      - Documents
+      summary: Delete a document
+      responses:
+        '202':
+          description: Task enqueued
+  /indexes/{indexUid}/documents/delete-batch:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    post:
+      tags:
+      - Documents
+      summary: Delete documents in batch
+      responses:
+        '202':
+          description: Task enqueued
+components:
+  parameters:
+    IndexUid:
+      name: indexUid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the index.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: 'Authorization header using "Authorization: Bearer {API_KEY}".
+
+        The master key authorizes /keys management; regular API keys
+
+        should be used for all other routes.
+
+        '

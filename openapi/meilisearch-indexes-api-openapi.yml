@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch Documents Indexes API
+  description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
+
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+
+    API keys, and tasks. All protected routes require Bearer token authentication using
+
+    a master key or regular API key.
+
+    '
+  version: '1.0'
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+- url: http://localhost:7700
+  description: Default local Meilisearch instance
+- url: https://{cluster}.meilisearch.io
+  description: Meilisearch Cloud instance
+  variables:
+    cluster:
+      default: edge
+security:
+- bearerAuth: []
+tags:
+- name: Indexes
+paths:
+  /indexes:
+    get:
+      tags:
+      - Indexes
+      summary: List indexes
+      responses:
+        '200':
+          description: Paginated list of indexes
+    post:
+      tags:
+      - Indexes
+      summary: Create index
+      responses:
+        '202':
+          description: Task enqueued
+  /indexes/{indexUid}:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    get:
+      tags:
+      - Indexes
+      summary: Get index
+      responses:
+        '200':
+          description: Index metadata
+    patch:
+      tags:
+      - Indexes
+      summary: Update index
+      responses:
+        '202':
+          description: Task enqueued
+    delete:
+      tags:
+      - Indexes
+      summary: Delete index
+      responses:
+        '202':
+          description: Task enqueued
+  /indexes/{indexUid}/stats:
+    parameters:
+    - $ref: '#/components/parameters/IndexUid'
+    get:
+      tags:
+      - Indexes
+      summary: Get index stats
+      responses:
+        '200':
+          description: Stats payload
+  /swap-indexes:
+    post:
+      tags:
+      - Indexes
+      summary: Swap indexes
+      responses:
+        '202':
+          description: Task enqueued
+components:
+  parameters:
+    IndexUid:
+      name: indexUid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the index.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: 'Authorization header using "Authorization: Bearer {API_KEY}".
+
+        The master key authorizes /keys management; regular API keys
+
+        should be used for all other routes.
+
+        '

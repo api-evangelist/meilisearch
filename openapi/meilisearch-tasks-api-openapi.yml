@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch Documents Tasks API
+  description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
+
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+
+    API keys, and tasks. All protected routes require Bearer token authentication using
+
+    a master key or regular API key.
+
+    '
+  version: '1.0'
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+- url: http://localhost:7700
+  description: Default local Meilisearch instance
+- url: https://{cluster}.meilisearch.io
+  description: Meilisearch Cloud instance
+  variables:
+    cluster:
+      default: edge
+security:
+- bearerAuth: []
+tags:
+- name: Tasks
+paths:
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      summary: List tasks
+      responses:
+        '200':
+          description: Paginated tasks
+  /tasks/{taskUid}:
+    parameters:
+    - name: taskUid
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      tags:
+      - Tasks
+      summary: Get a task
+      responses:
+        '200':
+          description: Task
+  /tasks/cancel:
+    post:
+      tags:
+      - Tasks
+      summary: Cancel tasks
+      responses:
+        '202':
+          description: Cancellation task enqueued
+  /tasks/delete:
+    post:
+      tags:
+      - Tasks
+      summary: Delete tasks
+      responses:
+        '202':
+          description: Deletion task enqueued
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: 'Authorization header using "Authorization: Bearer {API_KEY}".
+
+        The master key authorizes /keys management; regular API keys
+
+        should be used for all other routes.
+
+        '
