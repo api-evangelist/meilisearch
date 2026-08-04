@@ -1,0 +1,304 @@
+openapi: 3.1.0
+info:
+  title: Meilisearch API
+  description: |
+    Meilisearch is an open-source, lightning-fast search engine API. This specification
+    documents the core REST endpoints for managing indexes, documents, search, settings,
+    API keys, and tasks. All protected routes require Bearer token authentication using
+    a master key or regular API key.
+  version: "1.0"
+  contact:
+    name: Meilisearch
+    url: https://www.meilisearch.com/docs
+servers:
+  - url: http://localhost:7700
+    description: Default local Meilisearch instance
+  - url: https://{cluster}.meilisearch.io
+    description: Meilisearch Cloud instance
+    variables:
+      cluster:
+        default: edge
+security:
+  - bearerAuth: []
+tags:
+  - name: Health
+  - name: Indexes
+  - name: Documents
+  - name: Search
+  - name: Settings
+  - name: Keys
+  - name: Tasks
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      description: Returns the health status of the Meilisearch instance.
+      security: []
+      responses:
+        "200":
+          description: Instance is healthy
+  /version:
+    get:
+      tags: [Health]
+      summary: Get version
+      description: Returns the version of the running Meilisearch instance.
+      responses:
+        "200":
+          description: Version information
+  /stats:
+    get:
+      tags: [Health]
+      summary: Get global stats
+      description: Returns aggregate statistics across all indexes.
+      responses:
+        "200":
+          description: Stats payload
+  /indexes:
+    get:
+      tags: [Indexes]
+      summary: List indexes
+      responses:
+        "200":
+          description: Paginated list of indexes
+    post:
+      tags: [Indexes]
+      summary: Create index
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    get:
+      tags: [Indexes]
+      summary: Get index
+      responses:
+        "200":
+          description: Index metadata
+    patch:
+      tags: [Indexes]
+      summary: Update index
+      responses:
+        "202":
+          description: Task enqueued
+    delete:
+      tags: [Indexes]
+      summary: Delete index
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}/stats:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    get:
+      tags: [Indexes]
+      summary: Get index stats
+      responses:
+        "200":
+          description: Stats payload
+  /swap-indexes:
+    post:
+      tags: [Indexes]
+      summary: Swap indexes
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}/documents:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    get:
+      tags: [Documents]
+      summary: List documents
+      responses:
+        "200":
+          description: Paginated documents
+    post:
+      tags: [Documents]
+      summary: Add or replace documents
+      responses:
+        "202":
+          description: Task enqueued
+    put:
+      tags: [Documents]
+      summary: Add or update documents
+      responses:
+        "202":
+          description: Task enqueued
+    delete:
+      tags: [Documents]
+      summary: Delete all documents
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}/documents/{documentId}:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Documents]
+      summary: Get a document
+      responses:
+        "200":
+          description: Document
+    delete:
+      tags: [Documents]
+      summary: Delete a document
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}/documents/delete-batch:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    post:
+      tags: [Documents]
+      summary: Delete documents in batch
+      responses:
+        "202":
+          description: Task enqueued
+  /indexes/{indexUid}/search:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    get:
+      tags: [Search]
+      summary: Search (GET)
+      responses:
+        "200":
+          description: Search results
+    post:
+      tags: [Search]
+      summary: Search (POST)
+      responses:
+        "200":
+          description: Search results
+  /multi-search:
+    post:
+      tags: [Search]
+      summary: Multi-search across indexes
+      responses:
+        "200":
+          description: Aggregated search results
+  /indexes/{indexUid}/similar:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    post:
+      tags: [Search]
+      summary: Find similar documents
+      responses:
+        "200":
+          description: Similar documents
+  /indexes/{indexUid}/settings:
+    parameters:
+      - $ref: "#/components/parameters/IndexUid"
+    get:
+      tags: [Settings]
+      summary: Get all settings
+      responses:
+        "200":
+          description: Settings payload
+    patch:
+      tags: [Settings]
+      summary: Update all settings
+      responses:
+        "202":
+          description: Task enqueued
+    delete:
+      tags: [Settings]
+      summary: Reset all settings
+      responses:
+        "202":
+          description: Task enqueued
+  /keys:
+    get:
+      tags: [Keys]
+      summary: List API keys
+      responses:
+        "200":
+          description: Paginated keys
+    post:
+      tags: [Keys]
+      summary: Create API key
+      responses:
+        "201":
+          description: Created key
+  /keys/{keyOrUid}:
+    parameters:
+      - name: keyOrUid
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Keys]
+      summary: Get an API key
+      responses:
+        "200":
+          description: Key
+    patch:
+      tags: [Keys]
+      summary: Update an API key
+      responses:
+        "200":
+          description: Updated key
+    delete:
+      tags: [Keys]
+      summary: Delete an API key
+      responses:
+        "204":
+          description: Deleted
+  /tasks:
+    get:
+      tags: [Tasks]
+      summary: List tasks
+      responses:
+        "200":
+          description: Paginated tasks
+  /tasks/{taskUid}:
+    parameters:
+      - name: taskUid
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [Tasks]
+      summary: Get a task
+      responses:
+        "200":
+          description: Task
+  /tasks/cancel:
+    post:
+      tags: [Tasks]
+      summary: Cancel tasks
+      responses:
+        "202":
+          description: Cancellation task enqueued
+  /tasks/delete:
+    post:
+      tags: [Tasks]
+      summary: Delete tasks
+      responses:
+        "202":
+          description: Deletion task enqueued
+components:
+  parameters:
+    IndexUid:
+      name: indexUid
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the index.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+      description: |
+        Authorization header using "Authorization: Bearer {API_KEY}".
+        The master key authorizes /keys management; regular API keys
+        should be used for all other routes.

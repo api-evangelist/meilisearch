@@ -1,0 +1,26 @@
+{
+  "provider": "meilisearch",
+  "sources": [
+    "meilisearch-documents-api-openapi.yml",
+    "meilisearch-health-api-openapi.yml",
+    "meilisearch-indexes-api-openapi.yml",
+    "meilisearch-keys-api-openapi.yml",
+    "meilisearch-search-api-openapi.yml",
+    "meilisearch-settings-api-openapi.yml",
+    "meilisearch-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "meilisearch-documents-api-openapi.yml",
+    "meilisearch-health-api-openapi.yml",
+    "meilisearch-indexes-api-openapi.yml",
+    "meilisearch-keys-api-openapi.yml",
+    "meilisearch-search-api-openapi.yml",
+    "meilisearch-settings-api-openapi.yml",
+    "meilisearch-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
