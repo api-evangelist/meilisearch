@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents Settings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get all settings"
+        },
+        {
+          "info": {
+            "name": "Update all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Update all settings"
+        },
+        {
+          "info": {
+            "name": "Reset all settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/settings",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Reset all settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

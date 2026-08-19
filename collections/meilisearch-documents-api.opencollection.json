@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "List documents"
+        },
+        {
+          "info": {
+            "name": "Add or replace documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Add or replace documents"
+        },
+        {
+          "info": {
+            "name": "Add or update documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Add or update documents"
+        },
+        {
+          "info": {
+            "name": "Delete all documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/documents",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete all documents"
+        },
+        {
+          "info": {
+            "name": "Get a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/:documentId",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a document"
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/:documentId",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a document"
+        },
+        {
+          "info": {
+            "name": "Delete documents in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/documents/delete-batch",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete documents in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

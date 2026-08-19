@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents Health API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/health"
+          },
+          "docs": "Returns the health status of the Meilisearch instance."
+        },
+        {
+          "info": {
+            "name": "Get version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/version"
+          },
+          "docs": "Returns the version of the running Meilisearch instance."
+        },
+        {
+          "info": {
+            "name": "Get global stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/stats"
+          },
+          "docs": "Returns aggregate statistics across all indexes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/search",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Search (GET)"
+        },
+        {
+          "info": {
+            "name": "Search (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/search",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Search (POST)"
+        },
+        {
+          "info": {
+            "name": "Multi-search across indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/multi-search"
+          },
+          "docs": "Multi-search across indexes"
+        },
+        {
+          "info": {
+            "name": "Find similar documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes/:indexUid/similar",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Find similar documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

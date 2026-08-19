@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents Indexes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes"
+          },
+          "docs": "List indexes"
+        },
+        {
+          "info": {
+            "name": "Create index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/indexes"
+          },
+          "docs": "Create index"
+        },
+        {
+          "info": {
+            "name": "Get index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get index"
+        },
+        {
+          "info": {
+            "name": "Update index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Update index"
+        },
+        {
+          "info": {
+            "name": "Delete index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/indexes/:indexUid",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Delete index"
+        },
+        {
+          "info": {
+            "name": "Get index stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/indexes/:indexUid/stats",
+            "params": [
+              {
+                "name": "indexUid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index."
+              }
+            ]
+          },
+          "docs": "Get index stats"
+        },
+        {
+          "info": {
+            "name": "Swap indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/swap-indexes"
+          },
+          "docs": "Swap indexes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

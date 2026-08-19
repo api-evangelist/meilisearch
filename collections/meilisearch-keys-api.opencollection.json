@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Meilisearch Documents Keys API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/keys"
+          },
+          "docs": "List API keys"
+        },
+        {
+          "info": {
+            "name": "Create API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7700/keys"
+          },
+          "docs": "Create API key"
+        },
+        {
+          "info": {
+            "name": "Get an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an API key"
+        },
+        {
+          "info": {
+            "name": "Update an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update an API key"
+        },
+        {
+          "info": {
+            "name": "Delete an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7700/keys/:keyOrUid",
+            "params": [
+              {
+                "name": "keyOrUid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an API key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
