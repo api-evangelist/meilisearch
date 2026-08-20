@@ -23,6 +23,12 @@ tags:
 - AI Search
 - Full-Text Search
 - Hybrid Search
+- Open-Source
+- Search
+tags_raw:
+- AI Search
+- Full-Text Search
+- Hybrid Search
 - Open Source
 - Search
 url: https://raw.githubusercontent.com/api-evangelist/meilisearch/refs/heads/main/apis.yml
@@ -120,6 +126,8 @@ apis:
   humanURL: https://www.meilisearch.com/docs
   baseURL: https://localhost:7700
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
