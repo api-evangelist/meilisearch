@@ -147,6 +147,8 @@ apis:
   - type: OpenAPI
     url: openapi/meilisearch-tasks-api-openapi.yml
 common:
+- type: Website
+  url: https://www.meilisearch.com/
 - type: AgenticAccess
   url: agentic-access/meilisearch-agentic-access.yml
 - type: TrustCenter
