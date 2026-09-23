@@ -1,15 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Meilisearch Documents Keys API
+  title: Meilisearch Keys API
   description: 'Meilisearch is an open-source, lightning-fast search engine API. This specification
 
     documents the core REST endpoints for managing indexes, documents, search, settings,
 
     API keys, and tasks. All protected routes require Bearer token authentication using
 
-    a master key or regular API key.
-
-    '
+    a master key or regular API key.'
   version: '1.0'
   contact:
     name: Meilisearch
@@ -35,6 +33,8 @@ paths:
       responses:
         '200':
           description: Paginated keys
+      operationId: getKeys
+      x-operation-id-source: derived
     post:
       tags:
       - Keys
@@ -42,6 +42,8 @@ paths:
       responses:
         '201':
           description: Created key
+      operationId: postKeys
+      x-operation-id-source: derived
   /keys/{keyOrUid}:
     parameters:
     - name: keyOrUid
@@ -56,6 +58,8 @@ paths:
       responses:
         '200':
           description: Key
+      operationId: getKeysByKeyOrUid
+      x-operation-id-source: derived
     patch:
       tags:
       - Keys
@@ -63,6 +67,8 @@ paths:
       responses:
         '200':
           description: Updated key
+      operationId: patchKeysByKeyOrUid
+      x-operation-id-source: derived
     delete:
       tags:
       - Keys
@@ -70,6 +76,8 @@ paths:
       responses:
         '204':
           description: Deleted
+      operationId: deleteKeysByKeyOrUid
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

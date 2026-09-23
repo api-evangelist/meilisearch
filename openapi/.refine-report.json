@@ -1,13 +1,7 @@
 {
   "provider": "meilisearch",
   "sources": [
-    "meilisearch-documents-api-openapi.yml",
-    "meilisearch-health-api-openapi.yml",
-    "meilisearch-indexes-api-openapi.yml",
-    "meilisearch-keys-api-openapi.yml",
-    "meilisearch-search-api-openapi.yml",
-    "meilisearch-settings-api-openapi.yml",
-    "meilisearch-tasks-api-openapi.yml"
+    "_original/meilisearch-openapi.yml"
   ],
   "outputs": [
     "meilisearch-documents-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "meilisearch-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "meilisearch-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-indexes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "meilisearch-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
