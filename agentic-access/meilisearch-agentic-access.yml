@@ -1,136 +1,25 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/meilisearch-openapi.yml
+source: openapi/meilisearch-documents-api-openapi.yml, openapi/meilisearch-health-api-openapi.yml,
+  openapi/meilisearch-indexes-api-openapi.yml, openapi/meilisearch-keys-api-openapi.yml, openapi/meilisearch-search-api-openapi.yml,
+  openapi/meilisearch-settings-api-openapi.yml, openapi/meilisearch-tasks-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 33
   by_action_class:
-    connected: 14
-    acting: 19
+    connected: 16
+    acting: 17
   by_consequence:
-    read: 14
-    write: 18
+    read: 16
+    write: 16
     safety-critical: 1
   human_in_the_loop_required: 1
 operations:
-- path: /health
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /version
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /stats
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /indexes
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /indexes
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /indexes/{indexUid}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /indexes/{indexUid}
-  method: patch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /indexes/{indexUid}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /indexes/{indexUid}/stats
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /swap-indexes
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /indexes/{indexUid}/documents
   method: get
+  operationId: getIndexesByIndexUidDocuments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -140,6 +29,7 @@ operations:
     audit: none
 - path: /indexes/{indexUid}/documents
   method: post
+  operationId: postIndexesByIndexUidDocuments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -155,6 +45,7 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/documents
   method: put
+  operationId: putIndexesByIndexUidDocuments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -170,6 +61,7 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/documents
   method: delete
+  operationId: deleteIndexesByIndexUidDocuments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -185,6 +77,7 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/documents/{documentId}
   method: get
+  operationId: getIndexesByIndexUidDocumentsByDocumentId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -194,6 +87,7 @@ operations:
     audit: none
 - path: /indexes/{indexUid}/documents/{documentId}
   method: delete
+  operationId: deleteIndexesByIndexUidDocumentsByDocumentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -209,6 +103,199 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/documents/delete-batch
   method: post
+  operationId: postIndexesByIndexUidDocumentsDeleteBatch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /health
+  method: get
+  operationId: getHealth
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /version
+  method: get
+  operationId: getVersion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /stats
+  method: get
+  operationId: getStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /indexes
+  method: get
+  operationId: getIndexes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /indexes
+  method: post
+  operationId: postIndexes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /indexes/{indexUid}
+  method: get
+  operationId: getIndexesByIndexUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /indexes/{indexUid}
+  method: patch
+  operationId: patchIndexesByIndexUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /indexes/{indexUid}
+  method: delete
+  operationId: deleteIndexesByIndexUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /indexes/{indexUid}/stats
+  method: get
+  operationId: getIndexesByIndexUidStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /swap-indexes
+  method: post
+  operationId: postSwapIndexes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /keys
+  method: get
+  operationId: getKeys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /keys
+  method: post
+  operationId: postKeys
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /keys/{keyOrUid}
+  method: get
+  operationId: getKeysByKeyOrUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /keys/{keyOrUid}
+  method: patch
+  operationId: patchKeysByKeyOrUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /keys/{keyOrUid}
+  method: delete
+  operationId: deleteKeysByKeyOrUid
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -224,6 +311,7 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/search
   method: get
+  operationId: getIndexesByIndexUidSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -233,21 +321,17 @@ operations:
     audit: none
 - path: /indexes/{indexUid}/search
   method: post
+  operationId: postIndexesByIndexUidSearch
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /multi-search
   method: post
+  operationId: postMultiSearch
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -263,21 +347,17 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/similar
   method: post
+  operationId: postIndexesByIndexUidSimilar
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /indexes/{indexUid}/settings
   method: get
+  operationId: getIndexesByIndexUidSettings
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -287,6 +367,7 @@ operations:
     audit: none
 - path: /indexes/{indexUid}/settings
   method: patch
+  operationId: patchIndexesByIndexUidSettings
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -302,6 +383,7 @@ operations:
     audit: required
 - path: /indexes/{indexUid}/settings
   method: delete
+  operationId: deleteIndexesByIndexUidSettings
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -315,71 +397,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /keys
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /keys
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /keys/{keyOrUid}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /keys/{keyOrUid}
-  method: patch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /keys/{keyOrUid}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /tasks
   method: get
+  operationId: getTasks
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -389,6 +409,7 @@ operations:
     audit: none
 - path: /tasks/{taskUid}
   method: get
+  operationId: getTasksByTaskUid
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -398,6 +419,7 @@ operations:
     audit: none
 - path: /tasks/cancel
   method: post
+  operationId: postTasksCancel
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -413,6 +435,7 @@ operations:
     audit: required
 - path: /tasks/delete
   method: post
+  operationId: postTasksDelete
   x-agentic-access:
     action-class: acting
     consequence: write
