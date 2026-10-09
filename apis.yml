@@ -212,6 +212,8 @@ common:
 - name: MCP Server
   url: https://github.com/meilisearch/meilisearch-mcp
   type: MCPServer
+- type: SpectralRules
+  url: https://github.com/meilisearch/meilisearch/blob/9d3365c81607e17ec9df1473f97d5dc9109bb1c4/crates/openapi-generator/.spectral.yaml
 integrations:
 - name: Meilisearch's
 - name: Background gradient and figure
