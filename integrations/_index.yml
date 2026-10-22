@@ -24,3 +24,16 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: meilisearch-vercel-own
+  label: Vercel (own)
+  partner: vercel
+  partner_name: Vercel (own)
+  category: Searching
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://vercel.com/marketplace/meilisearch-cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
