@@ -47,6 +47,46 @@ edges:
   detected_by: mirror-platform-listings.py
   category: Searching
   partner_tier: third-party
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: meilisearch.com
+    matched_domain: meilisearch.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2023-03-05'
+    last_updated: '2023-03-06'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - raw.githubusercontent.com
+    categories: []
+    own_openapi_files: 7
+    listings:
+    - key: meilisearch.com
+      title: Meilisearch v1.0
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/meilisearch.com/1.0.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/meilisearch/documentation/master/.vuepress/public/postman/meilisearch-collection.json
+      openapi_version: 3.0.3
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 generated: '2026-10-20'
 method: searched
 source:
@@ -59,3 +99,5 @@ checked:
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
 - vercel/integrations/vercel-integration-edges.yml
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
