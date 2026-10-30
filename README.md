@@ -1,4 +1,4 @@
-# Meilisearch (meilisearch)
+# Meilisearch
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,153 @@
 
 Meilisearch is an open source, lightning-fast search engine API that brings AI-powered hybrid search to sites and applications. It provides a RESTful API for indexing, searching, and managing documents, with SDKs available for all major languages and frameworks.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/meilisearch/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/meilisearch/refs/heads/main/apis.yml)
+**Areas:** AI Search · Full-Text Search · Hybrid Search · Open Source · Search
 
-## Scope
+## Meilisearch on APIs.io
 
-- **Type:** Index
+Everything profiled for Meilisearch is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/meilisearch/](https://apis.io/providers/meilisearch/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- AI Search
-- Full-Text Search
-- Hybrid Search
-- Open Source
-- Search
+- [Meilisearch API](https://apis.io/apis/meilisearch/meilisearch-api/) — The Meilisearch RESTful API provides endpoints for creating and managing indexes, adding and searching documents, configuring search settings, managing API…
+- [Meilisearch Documents API](https://apis.io/apis/meilisearch/meilisearch-documents-api/) — The Documents API from Meilisearch — 3 operation(s) for documents.
+- [Meilisearch Health API](https://apis.io/apis/meilisearch/meilisearch-health-api/) — The Health API from Meilisearch — 3 operation(s) for health.
+- [Meilisearch Indexes API](https://apis.io/apis/meilisearch/meilisearch-indexes-api/) — The Indexes API from Meilisearch — 4 operation(s) for indexes.
+- [Meilisearch Keys API](https://apis.io/apis/meilisearch/meilisearch-keys-api/) — The Keys API from Meilisearch — 2 operation(s) for keys.
+- [Meilisearch Search API](https://apis.io/apis/meilisearch/meilisearch-search-api/) — The Search API from Meilisearch — 3 operation(s) for search.
+- [Meilisearch Settings API](https://apis.io/apis/meilisearch/meilisearch-settings-api/) — The Settings API from Meilisearch — 1 operation(s) for settings.
+- [Meilisearch Tasks API](https://apis.io/apis/meilisearch/meilisearch-tasks-api/) — The Tasks API from Meilisearch — 4 operation(s) for tasks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Meilisearch API
+GraphQL schemas.
 
-The Meilisearch RESTful API provides endpoints for creating and managing indexes, adding and searching documents, configuring search settings, managing API keys, and monitoring tasks and health status.
+- [Moved to /providers/meilisearch/](https://apis.io/graphqls/meilisearch/meilisearch-graphql/)
 
-- **Human URL:** [https://www.meilisearch.com/docs](https://www.meilisearch.com/docs)
-- **Base URL:** `https://localhost:7700`
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Documents
-- Indexing
-- Search
+- [MCP Server](https://apis.io/servers/meilisearch/mcp-server/)
 
-#### Properties
+#### Agentic access (1)
 
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Meilisearch Agentic Access](https://apis.io/agentic-access/meilisearch/meilisearch-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Meilisearch API](https://apis.io/collections/meilisearch/open-meilisearch/)
+- [Meilisearch Documents API](https://apis.io/collections/meilisearch/open-meilisearch-documents-api/)
+- [Meilisearch Documents Health API](https://apis.io/collections/meilisearch/open-meilisearch-health-api/)
+- [Meilisearch Documents Indexes API](https://apis.io/collections/meilisearch/open-meilisearch-indexes-api/)
+- [Meilisearch Documents Keys API](https://apis.io/collections/meilisearch/open-meilisearch-keys-api/)
+- [Meilisearch Documents Search API](https://apis.io/collections/meilisearch/open-meilisearch-search-api/)
+- [Meilisearch Documents Settings API](https://apis.io/collections/meilisearch/open-meilisearch-settings-api/)
+- [Meilisearch Documents Tasks API](https://apis.io/collections/meilisearch/open-meilisearch-tasks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Meilisearch — meilisearch rules](https://apis.io/rules/meilisearch/meilisearch-meilisearch-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Meilisearch Authentication](https://apis.io/security/meilisearch/meilisearch-authentication/)
+- [Meilisearch Domain Security](https://apis.io/security/meilisearch/meilisearch-domain-security/)
+- [Meilisearch Trust Center](https://apis.io/security/meilisearch/meilisearch-trust-center/)
+- [Meilisearch Vulnerability Disclosure](https://apis.io/security/meilisearch/meilisearch-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Meilisearch Plans Pricing](https://apis.io/plans/meilisearch/meilisearch-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Meilisearch Rate Limits](https://apis.io/rate-limits/meilisearch/meilisearch-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Meilisearch Finops](https://apis.io/finops/meilisearch/meilisearch-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.meilisearch.com/)
 - [Documentation](https://www.meilisearch.com/docs)
-- [Reference](https://www.meilisearch.com/docs/reference/api/overview)
-- [Getting Started](https://www.meilisearch.com/docs/learn/getting_started/installation)
-- [Authentication](https://www.meilisearch.com/docs/learn/security/basic_security)
-- [S D Ks](https://www.meilisearch.com/docs/learn/what_is_meilisearch/sdks)
-- [Postman Collection](collections/meilisearch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/meilisearch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/meilisearch)
-- [Portal](https://www.meilisearch.com/)
-- [Documentation](https://www.meilisearch.com/docs)
-- [GitHub Organization](https://github.com/meilisearch)
-- [Community](https://discord.gg/meilisearch)
-- [Sign Up](https://cloud.meilisearch.com/register)
-- [Login](https://cloud.meilisearch.com/)
 - [Pricing](https://www.meilisearch.com/pricing)
-- [Blog](https://www.meilisearch.com/blog)
 - [Changelog](https://github.com/meilisearch/meilisearch/releases)
-- [Features](undefined)
-- [Integrations](https://www.meilisearch.com/integrations)
-- [M C P Server](https://github.com/meilisearch/meilisearch-mcp)
+- [Blog](https://www.meilisearch.com/blog)
+- [GitHub](https://github.com/meilisearch)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 45.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 56.7 |
+| Contract quality | 47.4 |
+| Contract governance | 15.2 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 32.9 |
+
+**Agent readiness 24.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/meilisearch/](https://apis.io/providers/meilisearch/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Meilisearch: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/meilisearch/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
